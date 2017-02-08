@@ -1,0 +1,15 @@
+Hey Green House, this is Yan. In order to install the script I had made you ened to do the following:
+
+Extract the zip file and copy all the files to a folder on your server.
+2. Create a database and execute all the queries in ‘calendar_complete_db_for_new_users.sql’.
+3. Open configs/db.config.php and change the host, name, user and password to match with your database.
+4. Open configs/config.php and change the paths (FULLCAL_DIR and FULLCAL_URL) to match your paths.
+define(‘FULLCAL_DIR’,’/path-to-web-server/employee-work-schedule’);
+If you don’t know what the path-to-web-server should be you can remove the // in front of getcwd() and press f5 on your website. That will show the correct FULLCAL_DIR.
+define(‘FULLCAL_URL’, $http_host . ’/employee-work-schedule’); Don’t change $http_host.
+5. Make all the folders readable
+6. Make the following folders writable (773) for everyone:
+– templates_c
+– system
+– system/dbdump
+– system/uploads
