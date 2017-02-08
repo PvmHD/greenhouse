@@ -1,0 +1,130 @@
+<style type="text/css">
+    #dialog-message-custom-view {
+		height: 100%;
+                
+    }
+
+    #form_container label {
+        display:block;
+		/*font-weight:bold;*/
+		text-align:right;
+		width:100px;
+		float:left;
+		padding-top:2px;
+    }
+    #customview_form_container input[type="text"],textarea,select {
+        float:left;
+		font-size:12px;
+		padding:3px 3px;
+		border:solid 1px #aacfe4;
+		width:400px;
+		margin:2px 0 2px 5px;
+    }
+    #customview_form_container select {
+        float:left;
+		font-size:12px;
+		padding:3px 3px;
+		border:solid 1px #aacfe4;
+		width: 405px;
+		margin:2px 0 2px 5px;
+        background-color: #FFFFFF;
+        border-radius: 3px;
+        height: 28px;
+    }
+
+	.controls textarea {
+		border-radius: 3px;
+		font-size: 12px;
+	}
+	#editdialog-colpick-colorpicker {
+		border:0;
+		width:70px;
+		border-right:20px solid green;
+		border-image: none;
+		border-style: solid;
+		border-width: 1px 20px 1px 1px !important;
+	}
+
+	.sp-container {
+		width:185px;
+	}
+    
+    hr {
+        border: none;
+        height: 1px;
+        /* Set the hr color */
+        color: #acacac; /* old IE */
+        background-color: #acacac; /* Modern Browsers */
+    }
+	
+    .ui-dialog { z-index: 1000 !important ;}
+    
+    </style>
+   
+
+    <div id="dialog-message-custom-view" style="display: none;">
+		
+        
+        <div id= "customview_error_message" style="height:20px;font-size:10pt;color:#FF0004;padding:3px;" ></div>
+            <form class="form-horizontal" >
+		<div id="customview_form_container" >
+		     
+                    <div class="control-group" style="margin-bottom:1px;">
+                            <label id="customview_title_label_id" class="control-label">Title: </label>
+                            <div class="controls" style="margin-left:0;">
+                                    <input type="text" class="input-xlarge" id="customview_edited_title"  >
+                            </div>
+                    </div>
+                    <div class="control-group" style="margin-bottom:1px;">
+                            <label id="customview_description_label_id" class="control-label">Description: </label>
+                            <div class="controls" style="margin-left:0;">
+                                <textarea class="input-xlarge" id="customview_edited_description"></textarea>
+                            </div>
+                    </div>
+                    <div class="control-group" style="margin-bottom:1px;">
+                            <label id="customview_location_label_id" class="control-label">Location: </label>
+                            <div class="controls" style="margin-left:0;">
+                                    <input type="text" class="input-xlarge" id="customview_edited_location"  >
+                            </div>
+                    </div>
+                    <div class="control-group" style="margin-bottom:1px;">
+                            <label id="customview_phone_label_id" class="control-label">Phone: </label>
+                            <div class="controls" style="margin-left:0;">
+                                    <input type="text" class="input-xlarge" id="customview_edited_phone"  >
+                            </div>
+                    </div>
+                            
+                   
+                    
+                    <?smarty if $smarty.const.MOVE_EVENT_TO_OTHER_CALENDAR_POSSIBLE && $movable_to|@count > 0 ?>
+                    <div class="control-group" id="customview_calendar_id_change_field" style="margin-bottom:1px;">
+                        <label id="customview_calendar_label_id" class="control-label">Calendar: </label>
+                        <div class="controls" style="margin-left:0;">
+                            <select id="customview_edit_dlg_calendar_selectbox" name="calendar_id" >
+                                <?smarty foreach from=$movable_to item=item ?>
+                                    <option class="calendar_option" value="<?smarty $item.calendar_id ?>" ><?smarty $item.name ?></option>
+                                <?smarty /foreach ?>
+                            </select>
+                        </div>
+                    </div>
+                    <?smarty /if ?>
+                    
+                  
+                    <br style="clear:both" />
+
+                   
+                <div id="info_txt" style="text-align:center;color:blue;"></div>
+
+                <div style="margin: 3px 0;">
+                        <input type="hidden" name="event_id" id="customview_event_id" value="" />
+                </div>
+                <div id= "customview_error_message_old" >
+
+                </div>
+			</div>
+			<!--<br /><input style="float:left;" value="Item verwijderen" type="button" id="del_btn">-->
+		</form>
+        </div>
+        
+       
+     

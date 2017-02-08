@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=windows-1250">
+  <meta name="viewport" content="width=400, initial-scale=1.0">
+  
+  <meta name="generator" content="">
+  <title></title>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type='text/javascript' src='<?smarty $smarty.const.FULLCAL_URL ?>/script/lang<?smarty if isset($language) && !empty($language) ?><?smarty $language ?><?smarty else ?>EN<?smarty /if ?>.js'></script>
+
+
+<?smarty if $smarty.const.BOOTSTRAP_LOGIN === true ?>
+
+  <link href="<?smarty $smarty.const.EXTERNAL_URL ?>/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  
+ <link rel="stylesheet" href="<?smarty $smarty.const.EXTERNAL_URL ?>/bootstrap/font-awesome-4.7.0/css/font-awesome.min.css">
+		
+
+  <style>
+
+
+
+body, html{
+     height: 100%;
+ 	background-repeat: no-repeat;
+ 	background-color: #d3d3d3;
+ 	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif, sans-serif;
+}
+
+.main{
+ 	margin-top: 70px;
+}
+
+
+
+hr{
+	width: 100%;
+	color: #fff;
+}
+
+.form-group{
+	margin-bottom: 15px;
+}
+
+label{
+	margin-bottom: 15px;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
+
+.main-login{
+ 	background-color: #fff;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+.main-center{
+ 	margin-top: 30px;
+ 	margin: 0 auto;
+ 	max-width: 380px;
+    padding: 40px 40px;
+
+}
+
+.login-button{
+	margin-top: 5px;
+}
+
+.login-register{
+	font-size: 12px;
+	text-align: center;
+}
+
+hr {
+    margin-bottom: 0;
+}    
+    
+  </style>
+
+  <?smarty else ?>
+  
+  <link rel="stylesheet" type="text/css" href="<?smarty $smarty.const.FULLCAL_URL ?>/style/style.css" />
+
+<link rel="stylesheet" type="text/css" href="<?smarty $smarty.const.FULLCAL_URL ?>/register/css/view.css" media="all">
+
+
+  <style>
+
+    h3 span {
+    	font-style: italic;
+    }
+    .register {
+		padding-top: 20px;
+
+    }
+  </style>
+  
+  <?smarty /if ?>
+  
+  </head>
+  <body>
+  
+<?smarty if $smarty.const.BOOTSTRAP_LOGIN === true ?>
+
+      <div class="container">
+			<div class="row main">
+				
+	           
+                               
+				<div class="main-login main-center">
+                                   <?smarty if $smarty.const.SHOW_LOGO_IN_LOGIN_FORM === true ?> 
+                                    <img src="<?smarty $smarty.const.FULLCAL_URL ?>/uploads/login_logo.png" />
+                                    <?smarty /if ?>
+				<div class="panel-title text-center">
+                                        <h3><?smarty $smarty.const.CALENDAR_TITLE ?> <span id="login_label" style="font-style:italic;">login</span></h3>
+                                        <hr />
+                                     </div>	
+                                    <form class="form-horizontal" method="post" action="<?smarty $smarty.const.FULLCAL_URL ?>/?action=login">
+						
+						
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label" id="login_username_label">Username</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="usern" id="username"  placeholder=""/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" id="login_password_label" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="passw" id="password"  placeholder=""/>
+								</div>
+							</div>
+						</div>
+
+						
+
+						<div class="form-group ">
+							<input type="submit" class="btn btn-primary btn-lg btn-block login-button submit"  id="login" value="Log in" title="Login" />
+                                                </div>
+                                                       
+                                                    <div class="login-register">
+                                                        <a href="<?smarty $smarty.const.FULLCAL_URL ?>/register" id="register_btn">Register</a>
+                                                     </div>
+                                                
+						<div class="login-register">
+                                                    <a href="<?smarty $smarty.const.FULLCAL_URL ?>/forgotten-password" id="forgotten_password_btn">Forgotten password</a>
+                                                 </div>
+					</form>
+				</div>
+			</div>
+		</div>
+      
+<?smarty else ?>
+
+
+  <div id="wrap">
+		<div id="bodyPannel">
+		  <form method="post" action="<?smarty $smarty.const.FULLCAL_URL ?>/?action=login" >
+
+          	<div class="form_description">
+				 <h3><?smarty $smarty.const.CALENDAR_TITLE ?> <span id="login_label">login</span></h3>
+
+				<?smarty if isset($msg) && !empty($msg) ?>
+					<span style="color:red;position:relative;font-weight:bold;"><?smarty $msg ?></span>
+				<?smarty /if ?>
+			</div>
+                      <div style="width: 200px;float: left;padding: 0 100px 0 0">
+                          <ul >
+                            <li>
+                                <span>
+
+                                <input type="text" value="" size="30" name="usern">
+                                <label for="user_username" id="login_username_label">Username</label>
+                                </span>
+
+                            </li>
+                            <li>
+                                <span>
+
+                                <input type="password" size="30" name="passw">
+                                <label for="user_password" id="login_password_label">Password</label>
+                                </span>
+                            </li>
+			</ul>
+                      </div>
+                      <?smarty if $smarty.const.SHOW_LOGO_IN_LOGIN_FORM === true ?>
+                      <div>
+                          <img src="<?smarty $smarty.const.FULLCAL_URL ?>/uploads/login_logo.png" />
+                      </div>
+                      <?smarty /if ?>
+
+
+        <div class="input-group"  style="clear:both;">
+          <input name="login" type="submit" id="login" value="Log in" title="Login" class="submit" />
+       </div>
+
+        </form>
+	</div>
+        <div class="register">
+	        <?smarty if $smarty.const.USERS_CAN_REGISTER ?>
+	        	<a href="<?smarty $smarty.const.FULLCAL_URL ?>/register" id="register_btn">Register</a> |
+	        <?smarty /if ?>
+       	 	<a href="<?smarty $smarty.const.FULLCAL_URL ?>/forgotten-password" id="forgotten_password_btn">Forgotten password</a>
+        </div>
+</div>
+
+<?smarty /if ?>
+      
+      <script type="text/javascript">
+      $('#login_username_label').html(Lang.Popup.LabelUsername);
+      $('#login_password_label').html(Lang.Popup.LabelPassword);
+      $('#login').val(Lang.Popup.LabelLogin);
+      $('#login_label').html(Lang.Popup.LabelLogin);
+      $('#forgotten_password_btn').html(Lang.Button.forgottenPassword);
+      $('#register_btn').html(Lang.Button.register);
+      
+    </script>
+      
+  </body>
+</html>

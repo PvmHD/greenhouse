@@ -1,0 +1,86 @@
+<div id="custom_dropdown<?smarty $drd_number ?>" >
+    <span style="font-style:italic;"><?smarty $drd_name ?></span>   
+    
+    <script type='text/javascript'>
+        <?smarty if $drd_number == 1 ?>     
+            CustomView.currentDropdown1Options = '';
+        <?smarty elseif $drd_number == 2 ?>
+            CustomView.currentDropdown2Options = '';
+        <?smarty /if ?>
+    </script>
+    
+    <?smarty foreach from=$dropdown item=item ?>
+
+        <div class="dropdown_option" >
+            <div onclick="CustomView.addCustomOption('<?smarty $item.option_id ?>','<?smarty $item.text|@addslashes ?>','<?smarty $drd_number ?>');" alt="<?smarty if $my_active_calendars|@count > 1 ?>Click to show/hide<?smarty /if ?>" title="<?smarty if $my_active_calendars|@count > 1 ?>Click to show/hide<?smarty /if ?>" id="dropdown_group<?smarty $item.option_id ?>" class="dropdown_<?smarty $drd_number ?>_tick_<?smarty if $item.selected ?>on<?smarty else ?>off<?smarty /if ?>" option_id="<?smarty $item.option_id ?>" dropdown="<?smarty $drd_number ?>" style="margin:6px 0 0 1px;cursor: pointer; float: left; width: 1.4em;cursor:pointer;font-size:12px;color:#FFFFFF;font-weight:bold;">
+                    &nbsp;
+                </div>
+
+            <div  class="onedrdoption" id="drddiv_<?smarty $item.option_id ?>" style="width:122px;background-color:<?smarty if !empty( $item.color ) ?><?smarty $item.color ?><?smarty else ?><?smarty $item.calendar_color ?><?smarty /if ?>" onclick="CustomView.openCustomOption('<?smarty $item.option_id ?>','<?smarty $item.text|@addslashes ?>','<?smarty $drd_number ?>');" title="<?smarty if $my_active_calendars|@count > 1 ?>Show only this option<?smarty /if ?>" >
+                <a id="drdname<?smarty $item.option_id ?>" style="text-decoration: none;color: #EFEFEF;" href="#" >
+                <span style="font-family:tahoma,arial;text-shadow: -1px 0 #9F9F9F, 0 1px #9F9F9F, 1px 0 #9F9F9F, 0 -1px #9F9F9F;color:#fff;padding-left:3px;"><?smarty $item.text ?></span></a><?smarty if $item.origin == 'google' ?><span style="float:right;"><img src="<?smarty $smarty.const.IMAGES_URL ?>/google-icon.png" title="Google Calendar" alt="Google Calendar" /></span><?smarty /if ?>
+                <!-- hier stond eerst span caldiv -->
+            </div>
+        </div>
+    
+        <script type='text/javascript'>
+            <?smarty if $item.selected ?>
+                <?smarty if $drd_number == 1 ?>          
+                if(CustomView.currentDropdown1Options === '') {
+                    CustomView.currentDropdown1Options += '<?smarty $item.option_id ?>';
+                } else {
+                    CustomView.currentDropdown1Options += ',<?smarty $item.option_id ?>';
+                }
+            <?smarty elseif $drd_number == 2 ?>
+                if(CustomView.currentDropdown2Options === '') {
+                    CustomView.currentDropdown2Options += '<?smarty $item.option_id ?>';
+                } else {
+                    CustomView.currentDropdown2Options += ',<?smarty $item.option_id ?>';
+                }
+            <?smarty /if ?>  
+        <?smarty /if ?>
+        
+        </script>
+
+    <?smarty /foreach ?>
+         
+    <script type='text/javascript'>
+        <?smarty if $drd_number == 1 ?>    
+            CustomView.initialDropdown1Options = CustomView.currentDropdown1Options;
+        <?smarty elseif $drd_number == 2 ?>
+            CustomView.initialDropdown2Options = CustomView.currentDropdown2Options;
+        <?smarty /if ?>
+        
+        <?smarty if isset($option_id) ?>
+            var current_options = '<?smarty $option_id ?>';
+
+            if(current_options !== '') {
+                 // tick on or off
+                $('.dropdown_<?smarty $drd_number ?>_tick_on').each(function (index, item) {
+                    $('#dropdown_group' + $(item).attr('option_id')).removeClass('dropdown_<?smarty $drd_number ?>_tick_on').addClass('dropdown_<?smarty $drd_number ?>_tick_off');
+                });
+
+                if(current_options.indexOf(',') > -1) {
+                    var arr_current_options = current_options.split(',');
+
+                    $.each(arr_current_options, function( index, value ) {
+                        $('#dropdown_group' + value).removeClass('dropdown_<?smarty $drd_number ?>_tick_off').addClass('dropdown_<?smarty $drd_number ?>_tick_on');
+                    });
+                } else {
+                    $('#dropdown_group' + current_options).removeClass('dropdown_<?smarty $drd_number ?>_tick_off').addClass('dropdown_<?smarty $drd_number ?>_tick_on');
+                }
+            }
+        <?smarty /if ?>
+    </script>
+
+    <?smarty if isset($dropdown) ?>
+            <div id="dropdown_div" class="all_cals" >
+                    <div class="onecalendar-wrap">
+                            <div class="onedrdoption" onclick="CustomView.openCustomOption('all','',<?smarty $drd_number ?>);">
+                                    &nbsp;&nbsp;&nbsp;<span class="show_all_label">Show all</span>
+                            </div>
+                    </div>
+            </div>
+    <?smarty /if ?>
+    <br style="clear:left;" />
+</div>

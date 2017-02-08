@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+CALSCALE:GREGORIAN
+VERSION:2.0
+METHOD:PUBLISH
+X-WR-CALNAME:Employee Work Schedule
+X-WR-CALDESC:Employee Work Schedule
+X-APPLE-CALENDAR-COLOR:#336600
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20170112T080000Z
+DTEND;VALUE=DATE:20170114T140000Z
+UID:541
+DESCRIPTION:Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dic in quovis conventu te omnia facere, ne doleas. Ut proverbia non nulla veriora sint quam vestra dogmata. Nos autem non solum beatae vitae istam esse oblectationem videmus, sed etiam levamentum miseriarum. Nulla profecto est, quin suam vim retineat a primo ad extremum. Id enim volumus, id contendimus, ut officii fructus sit ipsum officium. Hic nihil fuit, quod quaereremus. Duo Reges: constructio interrete. Age nunc isti doceant, vel tu potius quis enim ista melius? 
+SUMMARY:moreday event
+LOCATION:office
+END:VEVENT
+END:VCALENDAR
