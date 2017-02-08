@@ -1,0 +1,620 @@
+Update 1 (16-3-2015):
+Changed the colorpicker to another one (spectrum), because it was causing a bug with dragging items in week view and day view.
+Added the possibility to show a mouseover with event details.
+Added ‘other language’ to the settings. This makes it easier to include a languagefile that is not yet in the calendar.
+Added a scrolling timepicker which also supports AM/PM.
+Added possibility to show the events in AM/PM timeformat.
+Updated documentation and screenshots.
+New config options.
+
+Update 2 (19-3-2015):
+Added possibility to set one or more calendars as default calendar(s), so their items will be opened on initial view of the calendar.
+Added 1 update query (calendar_db_update1.sql) to add ‘inital_show’ to the calendars table.
+Updated documentation.
+
+Update 3 (23-3-2015):
+Fixed deprecated mysql_connect error
+Fixed the failed admin insert query, because of duplicate mailaddress
+Fixed an issue with the colorpicker (didn’t load the default color) when adding a new calendar
+Fixed a validation error in my PHP form validation
+Added lost schedule table
+Improved layout on mobile device
+
+Update 4 (26-3-2015):
+Fixed: the initial color went wrong
+Added posibility to ignore timezones
+Added lines to language files
+Added confirm dialog when deleting an item
+Updated documentation
+New config option: IGNORE_TIMEZONE
+
+Update 5 (2-4-2015):
+Added hour calculation of employees in admin area, with ability to filter the results by calendar and period.
+Added many options to the settings form in the admin area, easier than setting them in config.php.
+Fixed some errors with saving and resizing when SHOW_AM_PM was on in combination with IGNORE_TIMEZONE.
+New config-option to determine if loginsession expires or not: LOGINSESSION_NOT_EXPIRES
+
+Update 6 (26-4-2015):
+Simplified and improved permissions.
+Admin can now only see his own calendars, lists and users in admin area.
+Share_type of a calendar can be set now. (public, private of private_group)
+Users can now also add calendars.
+Changed the way of controlling what someone sees and can edit, because some settings moved from global to calendar.
+It’s really multi-calendar now, besides the employee work schedule functionality.
+Added possibility to quickly add new users and new admins.
+UPDATE queries in sql (update 3)
+Fixed hourcalculation; also take account of future calendaritems.
+Fixed issues with the ‘initial show’ setting for a calendar.
+Added possibility for users to create their own calendars.
+Added many sentences to language files.
+Removed config options:
+ONLY_ADMIN_CAN_ADD_AND_EDIT, USERS_CAN_SEE_ITEMS_FROM_OTHERS, USERS_CAN_CHANGE_ITEMS_FROM_OTHERS, USERS_CAN_DELETE_ITEMS_FROM_OTHERS, SHOW_SMALL_CLOUD, SHOW_SMALL_CLOUD_ONLY_ADMIN, SHOW_SMALL_CLOUD_COUNTS, SHOW_COLOR_SELECTION
+New config options:
+HOURCALCULATION_WORKDAY_HOURS, HOURCALCULATION_DEFAULT_PERIOD, USERS_CAN_ADD_CALENDARS, SHOW_PUBLIC_AND_PRIVATE_SEPARATELY
+Removed wordcloud functionality, because the hourcalculation part made that unnecessary.
+
+Update 7 (3-5-2015):
+Fixed an issue with not showing mouseover of recurring events.
+Added possibility to show description, location and phone in week view, day view and list view
+Added config options: SHOW_DESCRIPTION_IN_WDL_VIEW, SHOW_LOCATION_IN_WDL_VIEW, SHOW_PHONE_IN_WDL_VIEW
+Added sentences to language files.
+Fixed an error with updating and resizing an event because calendarID was not send or was not correct.
+Fixed an issue when updating an event of a public calendar and someone was logged in.
+Now truncated title only in monthview.
+Fixed issue with not showing the correct color in the edit dialog initially, when no calendar was hand-selected yet.
+
+Update 8 (9-5-2015)
+Added print button for calendar and everything in admin area.
+Added possibility to export parts of admin area to Excel.
+See and undelete deleted calendars in admin area.
+Set calendar active, inactive or active for specific period.
+Set alterable range, with config option MASK_UNALTERABLE_DAYS you can choose if you want the unalterable days to be gray.
+Fixed: Items with starttime later than 22:00:00 and endtime 00:00:00 (midnight) were wrongly shifted to the next day. This is a Fullcalendar issue, so had to change files in Fullcalendar folder.
+Updated languagefiles.
+Fixed issue that feedback in profile and calendar edit form wasn’t showed when there was an error while saving.
+Fixed some bugs in admin area with calendars.
+
+Update 9 (10-5-2015)
+2 added fields (active and alterable range) in admin panel (last update) should also have been added in user panel
+Little change in permissions, so admin with FULL_CONTROL can also see public calendars
+
+Update 10 (16-5-2015)
+Updated screenshots and documentation.
+Current event is shown in admin dashboard.
+Possibility to mail an event to an emailaddress that is set for a calendar. Another admin emailaddress, subject and body (with variables) can be set in config.php
+
+Update 11 (4-6-2015)
+Fixed a fatal syntax error in a PHP function (calCanMail)
+
+Update 12 (16-6-2015)
+Fixed: Warning: Missing argument 1 for functions quickAddUser() and addUser()
+
+Update 13 (12-7-2015)
+- Added possibility to move event to another calendar, config option: MOVE_EVENT_TO_OTHER_CALENDAR_POSSIBLE
+- Added lines in languagefiles
+- Fixed error when mailing an event and no user was logged in
+- Updated documentation
+- Fixed a syntax error in mailEvent
+- SQL update
+- Notifications to admin/employer by email when user adds or changes an event
+- Nicer looking messages
+- Fixed issue: adding an event to a public calendar didn’t succeed
+- Fixed issue with UTF8 encoding on search results page
+- Fixed an error in search results because cal_id was missing
+
+Update 14 (13-7-2015)
+- Included yearly recurring possibility, SQL update necessary, see update7.sql for existing users, for new users it’s in the complete_db_for_new_users.sql.
+- Fixed problem with moving a recurring event to another calendar
+- Fixed syntax error in function getCalendarAdminEmail in calendar.class.php
+- Fixed issue that error message sometimes had wrong color
+- Moved some event listeners functions to listeners.js
+- Added lines in languagefiles
+
+Update 15 (14-7-2015)
+Fixed a syntax error in mailEvent in cal_events.php (overlooked that one)
+
+Update 16 (8-8-2015)
+Added possibility to set a color and info for a DD-item. (info field is used for mouseover for DD-item, SQL queries needed, see update8.sql for existing users, see complete_db_for_new_users.sql for first installation)
+Automatically insert 1 calendar if there is no calendar in the database.
+Added possibility to show URL field in the edit dialog, and added 3 options (SHOW_URL_FIELD,SHOW_URL_IN_MOUSEOVER, SHOW_URL_IN_WDL_VIEW) in config.php.
+Added lines in language files
+Added Italian language file: langIT.js
+Fixed: when item is dropped on a date that is not in the alterable range, the drop should be cancelled.
+
+Update 17 (23-8-2015)
+Calendar name is now configurable.
+IMPORT USERS FROM WORDPRESS TABLE: Added possibility to import users from Wordpress wp_users table.
+TOUCH FRIENDLY: Made drag & drop and daycell select working on touch devices, configurable in config.php: TOUCHFRIENDLY_DRAG_EVENTS, TOUCHFRIENDLY_SELECT_DAYCELLS.
+Added checkbox in profile edit form to set a user active.
+Updated language files
+Translated login form	
+Fixed 'The URL is rejected' error, that came with 'you cannot add an event' message and the color not being updated when opening the edit dialog, because of the get_cal call not succeeding.
+Fixed issue with searchfield floating a little too low.
+Fixed issue: when creating an event in monthview, allDay checkbox should be set to true initially.
+Forgot to remove an 'echo'.
+
+Update 18 (6-9-2015)
+Added possibility to upload and attach files to events, SQL update and 2 config options added:  SHOW_FILE_UPLOAD,  MAX_EVENT_FILE_UPLOAD, don't forget to add a writable folder: 'uploads'.
+Added Czech language
+3 new config options, to determine which day is first day of week, which hour should be scrolled to initially and which hour should be first visible hour: 
+FIRSTDAY_OF_WEEK, FIRST_SCROLL_HOUR, MIN_VISIBLE_TIME
+Fixed: error event.myurl is null
+Fixed: translation of login form was missing the language
+Fixed: when admin (with fullcontrol) was logged in and picked another color for an event, the color wasn't saved.
+Fixed: when updating an event in some cases the color was reset to calendars default color.
+Fixed: MyCalendar.calAlterableStartdate = undefined
+
+Update 19 (9-9-2015)
+Improved error catching for new installations, e.g. check on correct ‘calendars’ table and check if the path to the files directory on the webserver doesn’t start with http, an error that some people make. (changed files: /config/config.php and /model/calendar.class.php)
+
+Update 20 (15-9-2015)
+The superadmin with FULL_CONTROL can see the calendar buttons on the frontend now.
+Added a little padding beneath the last DD-item.
+Fixed: When a user was logged in and searched in private-group calendar, nothing was found. 
+Fixed: User:deleteUser undefined.
+Fixed: deleting an admin didn't work.
+Fixed: in some occasions a calendar was auto created.
+Fixed: An item should only be movable to other calendars of which the (logged in) user has rights.
+
+Update 21 (3-10-2015)
+New config option to define if the weekend days are visible: SHOW_WEEKENDS
+Tweak: The dates are not automatically set anymore when the 'error in dates' error is not triggered.
+the dropdownlist with calendars to which you can move an item must only be visible when there is at least 1 calendar to show.
+Fixed: long events that are more days than 2 months were not showed in a certain month when start date was before the beginning of the month and the end date was after the end of the month.
+Added possibility to disable automatic database backup.
+Updated screenshots
+Fixed: when showAMPM set to true and timepicker dateformat is dd/mm/yy, the startdate and enddate is incorrect after updating an event.
+
+Update 22 (21-11-2015)
+Admins (employees) can create usergroups now.
+Added possibility to predefine the locations for a calendar. If locations are predefined a dropdownlist is shown in the event edit dialog instead of a textfield.
+SQL update 10 !
+Added a logout button in dashboard.
+Added possibility to show events from exchange calendar (mcrypt is needed, on Linux: sudo php5enmod mcrypt [enter]  sudo php5enmod mcrypt)
+Translated calendar section of dashboard.
+Fixed: when superadmin was logged in, language was not available
+Fixed: error when admin or superadmin clicked 'forgotten password'
+Fixed: some notices.
+Fixed: bug that user could not add a calendar.
+Fixed: bug that a user when not logged in could not edit a recurring event, that should be possible when the calendar is public and 'can_edit' is true for the current calendar.
+Fixed: bug in calendar edit form in the dashboard, that 'Can see DD-items' value was not saved correctly.
+Fixed: When editing a moreday event in listview and clicking on a day that was not the first day of the event, then start date was set to the date of the clicked day.
+Fixed: dashboard – calendars section: in some cases the wrong calendars where shown after deleting a calendar.
+Fixed: events of deleted calendars should be hidden.
+Fixed: in some cases an event wasn't saved correctly in a public calendar.
+Tweak: Superadmin should see all the users in the users section.
+Changed the name of an internal id (script.js): interval_day_div changed to interval_week_choice_div
+Added to recurring options: daily - every x days and weekly - every x weeks.
+Starting a recurring event is now more logical, with a checkbox.
+Added config option: OWNER_EXCHANGE_CAL_ALLOWED_WITHOUT_TOKEN
+Removed config-options, because they can be set for each calendar now: SHOW_LOCATION_FIELD, SHOW_URL_FIELD, SHOW_DESCRIPTION_FIELD, SHOW_PHONE_FIELD
+Tweak: super-admin can not be deleted and an admin can not delete themselves.
+
+Update 23 (25-11-2015)
+Added possibility to make fields required in the edit dialog.
+Moved settings (show description, location, phone and url) to calendar edit form.
+Fixed: in some cases deleted calendars where showed.
+Fixed: For some timezones a recurring event started a day to early.
+Fixed some notices
+Inserted missing ; in the SQL update file
+
+Update 24 (28-11-2015)
+Added possibility to unable editing one event by two users at the same time. (config-option: SAVE_CURRENT_EDITING)
+Execute the query in update_11.sql
+Tweak: when an event is moved to another calendar, the event has to get the color of the calendar it is added to.
+Fixed: Office files couldn't be opened after uploading.
+Fixed: in some cases a user couldn't edit an event while he was in the correct user-group.
+
+Update 25 (1-12-2015)
+Tweaked the functionality that only 1 person at the time can edit an event.
+– After 30 minutes the still active rows are set to inactive.
+– Added a listener to the close button (x) of the edit dialog so the row can be set to inactive.
+– Default value for SAVE_CURRENT_EDITING is now ‘false’.
+– After calendar refresh the rows are set to inactive now also.
+Expanded searching so it also searches in description and location.
+Fixed: initially not all the fields in the edit dialog were visible when more than one calendar was initially set to be visible.
+Fixed: file extension of an added file was undefined right after upload.
+Fixed: public calendars were not shown in the ‘move to other calendar’ dropdownlist.
+
+Update 26 (9-12-2015)
+update12.sql
+Optimized amount of queries being done.
+Fixed: first day of week, first scroll hour and min visible time were not working.
+Changed possible values for SCHEDULE_SQLDUMP to 'day', 'hour' or 'never'.
+
+Update 27 (14-12-2015)
+update13.sql
+Added possibility to change font color for recurring events and to show an icon in front of the event title. New config-options: RECURRING_EVENT_TEXT_COLOR,  SHOW_RECURRING_EVENT_ICON
+Added possibility to set the default time duration when dragging. (30, 60 or 120 minutes, config-option: DEFAULT_EVENT_DURATION)
+Added lines to language files.
+Added possibility to set a group calendar viewable to others.
+Tweak: the config-option DATEPICKER_DATEFORMAT is now also used for the date format in week- and dayview.
+Tweak: show name instead of userID in calendars overview in dashboard when superadmin is logged in.
+Tweak: hide the 'add calendar' button when the super-admin is logged in.
+Tweak: when editing a calendar and for example the title was not filled in, the already filled in values were not remembered.
+Fixed: when editing an event of which the end time was the same as the start-time and not 'allday'; and 'allday' checkbox was checked and then unchecked, the end time was set to the current time, that was incorrect.
+Fixed: in some cases the 'add/delete users' dialog in the user-groups form was too small, thereby the two blocks were under each other instead of next to each other.
+Fixed: when adding a calendar, the groups dropdownlist was empty.
+Fixed: when dropping an external item on the week- or day view the event was wrongly set to allDay.
+Fixed: when showWeekends was set to false, the list-view was not showed at all because of an error.
+Fixed: in some cases a group could not be deleted. 
+
+Update 28 (13-1-2016)
+update14.sql
+Tweak: Phonenumbers are clickable now. Several functions on phones are possible that way.
+Added config-option SHOW_PHONE_ICON_FOR_MOBILE_CALLS.
+Added possibility to add a title for a person (eg. Sir, Mrs etc.)
+Added possibility to create a PDF of selected period, works in all views and with 1 or more calendars selected. (basic text or table-like) 
+– A logo will be visible on the PDF if you add a png file named 'pdf_logo.png' in the uploads folder. (appr. Height/width: 100x100pixels)
+– An employer/admin can set some options in the settings section. When a user creates the PDF the settings of the calendar creator are used.
+Added possibility to assign items to users with user-group DD_items, for each calendar you can choose if you want the DD-items to be used for assigning or not.
+Added possibility to send email to the user that was assigned an item to.
+When opening the event you can see who assigned the event. You can choose to show an icon on the event with the new config-option: SHOW_ASSIGNED_BY_ICON.
+Added a line in config.php to better determine if a website is https.
+Fixed issue with apostrophe in calendar name.
+Fixed a notice: undefined index 'can_view'.
+Improved print layout.
+Fixed issue with not saving DD-items while updating the calendar.
+Fixed: in week-view and day-view a DD-item could not be dragged to 'allday' section.
+Fixed: in some browsers there was a problem with the timepicker not getting the correct value when showAM/PM was set to true.
+Fixed a render problem when events were overlapping in weekview and dayview.
+Fixed: & was replaced by &amp; when placed in the title of an event.
+Removed mysqli_close after getEvents, mySQL takes care of it and it gave problems in combination with the PDF export function.
+Fixed: when SHOW_SEARCHBOX was set to false the PDF- and print button were not visible.
+
+Update 29 (3-2-2016)
+update15.sql
+Added possibility to set a start- and end time for a DD-item. They are used while drag and drop in the monthview. 
+– When mouseover the DD-item the times get visible for quick reference.
+Added some lines in language files.
+Fixed: superadmin accidentally saw deleted users also in the dashboard.
+Fixed: a deleted user could still login.
+Fixed: when using the simple timepicker the event could not be saved anymore.
+Added possibility to set a start- and end time for a DD-item. They are used while drag and drop in the monthview. 
+– When mouseover the DD-item the times get visible for quick reference.
+Added possibility to copy events. 
+- added config-option COPY_EVENT_POSSIBLE.
+Added some lines in language files.
+Added possibility to set the sorting order for calendars in the database. (in next update it will be changeable in the dashboard) 
+- added config-option: SORT_ALL_CALENDARS_BY_CAL_ORDERID
+Tweak: duplicate names for DD-items in a calendar are possible now.
+Tweak: now FIRSTDAY_OF_WEEK also is used in datepickers.
+Tweak: in some cases a new page was started to early.
+Tweak: in search results the descriptions of recurring events had to be altered because of the extending of the recurring possibilities in one of the last updates.
+Tweak: Admin should also see users which are in the admins uaergroups, but only the admins own calendars.
+Fixed: superadmin accidentally saw deleted users also in the dashboard.
+Fixed: a deleted user could still login.
+Fixed: when using the simple timepicker the event could not be saved anymore.
+Fixed error when opening a group with no users attached yet.
+Fixed timezone issue with recurring events.
+Fixed issue that incorrect start time is saved when an event was changed from allDay to non-allDay and start time was not changed in the time picker.
+
+Update30 (13-2-2016)
+update16.sql
+Added possibility to have night-shift DD-items.
+Tweak: night shifts now take 2 days of space on the calendar.
+Fixed: In some cases only the first calendar was shown in dashboard.
+Fixed: the end time was changed to current time when opening the event and not changing the end time.
+Tweak: date format in mouseover of recurring events is now also according the date format as set in config.php.
+Tweak: The automatic back-up of the database is now only exporting the calendar tables, so no chance of  reaching memory limit when you have put the tables into another existing database with many tables.
+Tweak: Updated code about finding protocol (http or https) in config.php.
+
+Update 31 (15-2-2016)
+Tweak: calendar order is now also editable in calendars section in dashboard.
+Tweak: PDF export: how the sorting happens is now also configurable in settings.
+Added lines to language files
+Fixed: saving a DD-item in the user dashboard went wrong.
+Fixed: in some cases DD-items were overwritten
+Fixed: nightshift checkbox in DD-items was not working as supposed and gave problems while saving the calendar.
+
+Update 32 (21-2-2016)
+update17.sql
+Fixed: a user in a user-group calendar could not delete an event of another user when ‘group can delete’  was on.
+Fixed: in some timezones an added (DD-item) event was mistakenly saved as allDay event
+Fixed: night shift hours were calculated incorrectly.
+Fixed issue with ‘can change color’  in combination with a ‘user-group’  calendar.
+Fixed issue with the feature that doesn’t allow an event to be edited by two persons at the same time.
+Added: team member combo in edit dialog and also possibility to assign with that, you set the visibility of this field for every calendar
+Added team-member in mouseover and icons for location, phone, url and team-member
+Added lines to language files
+
+Update 33 (27-2-2016)
+Fixed: recurring night-shift events bug
+Fixed: undefined team-member in mouseover
+Fixed: when changing the number of ‘ every x weeks’  of a weekly recurring event, the updating was not correct.
+Fixed: syntax error concerning team_member
+
+Update 34 (20-4-2016)
+Update18.sql
+Added possibility to create 2 custom dropdown that can be showed in the edit dialog and as extra filters on the left of the calendar.
+Added lines to languagefiles
+Added config-option: MAX_VISIBLE_TIME
+Added the existing users import feature is now in the users section in the dashboard.
+Tweak: hour calculation of employee is sorted on date now
+Added possibility to edit specific items of a recurring pattern.
+Tweak: validator ‘bool’ so that ‘1’ is also returned as true
+Added possibility to import users from phpBB users table. (3.0.14 and 3.1.7)
+Tweak: the texts on the buttons ‘add user’  and ‘quick add user’  have to be ‘add admin’  and ‘quick add admin’ when the super-admin is logged in, because the super-admin can only add admins.
+Fixed issue with color not being saved correctly (hsv(0,0,0)), the color must be HEX format.
+Tweak: Removed checkbox ‘send activation mail’  in settings.
+Fixed bug with changing order in calendars section in dashboard.
+Fixed issue with not showing all the fields in mouseover initially when more than 1 calendar is initially shown. 
+Fixed: when opening an event right after it was added, the optional fields where not shown.
+Fixed: copy button and email button where on top of each other.
+Fixed: in some cases mouseover team-member was undefined.
+Added possibility to set how many days users can see events in advance. Configurable per calendar.
+Fixed bug with checkbox ‘others can view’.
+Added lines in language files:
+Lang.Prompt.Update.updateOneOrAllTitle = 'Edit item(s)';
+Lang.Prompt.Update.chooseOneOrAllText = 'Do you want to edit this item or the whole pattern?';
+Lang.Prompt.Update.thisItemBtn = 'This item';
+Lang.Prompt.Update.allItemsBtn = 'Whole pattern’;
+Lang.Popup.EditRecurringEvent = 'Edit recurring event’;
+
+Update 35 (27-4-2016)
+Added view in which you can see events by period. Showing is optional. Added config-option SHOW_CUSTOM_LISTVIEW_BUTTON.
+Fixed: when having several calendars with one or more calendars with custom dropdowns, and opening a calendar without custom dropdowns after a calendar with custom dropdown the getEvents call consisted option_id. That didn’t return all the events.
+Tweak: javascript indexOf gave problems with searching id in the string with calendarID’s.
+Fixed: because of new way of getting events when a calendar is clicked, events from Exchange went wrong when showing more than 1 calendars at the same time.
+Added lines in language files: Lang.Calendar.buttonText.CustomList = 'custom list’;
+
+Changed files: lib/utils.class.php, model/events.class.php, index.php, script/script.js, view/cal.html, view/admin_panel.tpl, view/user_panel.tpl, configs/config.php, all language files
+added files: widgets folder
+
+Update 36 (14-5-2016)
+update19.sql
+Added tracking user login
+Added possibility to show team member beneath the event title
+Added user filter, only visible for admins
+Added possibility to unassign an event (event with team member assigned)
+Added change_date
+Fixed: when just changed a custom dropdown value in the event edit dialog, saving and opening the event right away, the custom dropdown was not set to the correct value.
+Fixed sorting of the events in the new ‘period’ list view.
+Fixed: when ‘users can see next x days’ is set, the admin must see all events.
+Fixed: label of the custom drop-downs was not visible.
+Fixed: the count users in groups section in the dashboard also counted deleted users.
+Fixed: When adding an event with custom drop-downs the values where not directly visible in the event title. Same for team member dropdown.
+Fixed: In some cases the loading of calendar events failed when unpicking a calendar.
+Fixed: assign to team member with inserting an event was not registered in the database.
+Tweak: pdf settings (table-look or not) were not in the user settings
+Tweak: with pdf export also show a private group calendar that is set to ‘can view’
+Tweak: adding team-member, custom dropdown values to the event title is now configurable
+new line to language files: 
+Lang.Popup.disconnectText = ‘Disconnect';
+Lang.Prompt.Disconnect = {};
+Lang.Prompt.Disconnect.title = 'Disconnect from pattern';
+Lang.Prompt.Disconnect.text = 'Are you sure you want to disconnect this item from the pattern?’;
+Lang.Popup.cancelButtonText = 'Cancel';
+
+Changed files:
+lib/utils.class.php, view/admin_panel.tpl, view/user_panel.tpl, view/cal.html, view/dlg_edit_event.html, admin/index.php, admin/calendars/index.php, admin/lists/index.php, model/events.class.php, model/users.class.php, model/calendar.class.php, model/groups.class.php, model/custom_fields.class.php, script/script.js, script/listeners.js, index.php, user/settings/index.php, command/cal_events.php, lib/utils.class.php
+
+Update 37 (27-5-2016)
+update20.sql
+Fixed: custom dropdown values were not in the 2 list views
+Fixed: assigned_by has to be an integer in the insert query
+Fixed: assign checkbox should only be visible in the event edit dialog when the team member field is shown.
+Fixed: when dragging a user-group DD-item to the calendar is it is added as a 2-day event
+Tweak: added title tag in 2 html pages
+Fixed: custom dropdown filters disappeared when clicked on ‘show all’ calendars.
+Fixed: custom dropdown filter wasn’t working anymore.
+Fixed: deleted users where still visible as a user group DD-item
+Added possibility to show calendar name on every line in PDF export
+Tweak: messages appear in the topbar now
+
+Added lines to language files:
+Lang.Menu.TitleAvailability = 'Availability';
+Lang.Button.AddAvailability = 'Add availability';
+Lang.Calendar.LabelGroup = 'Group ‘;
+Lang.Calendar.LabelCanView = 'can see';
+Lang.Calendar.LabelEverybody = 'Everybody';
+Lang.Menu.TitleAddAvailability = 'Add availability';
+Lang.Menu.TitleImportUsers = 'Import users';
+
+changed files: index.php, admin/settings/index.php, external/fullcalendar-1.6.4/fullcalendar/fullcalendar.js, script/script.js, view/cal.html, view/search_results.html, view/admin_panel.tpl, admin/users/index.php, model/events.class.php, style/customstyles.css, style/custom_dashboard_styles.css, style/style.css, external/fullcalendar-1.6.4/fullcalendar/fullcalendar.js, model/groups.class.php
+
+Update 38 (21-8-2016)
+update21.sql
+Added calendar buttons, filter sorting options, 12H/24H choice and extra info data (location, phone and url) to custom list view.
+Added possibility to set if admin gets notifications by email only for events created by logged in -users. Default is that email are send also when user is not logged in. You can find the option in the calendar edit section in the dashboard.
+Added lines to language files.
+Added possibility to set the validation type for phone numbers.
+Added allday default setting possibility
+Fixed a few notices in getEvents
+Fixed search function
+Fixed: dream member was not visible in list view.
+Fixed: when team member was set to empty in edit dialog it was not saved.
+Fixed: Smarty deprecated error with PHP 7.
+Fixed: in some cases the values set for custom dropdown where null.
+Fixed issue with 2-weekly recurrent event that first 2 occurrences where only 1 week from each other.
+Fixed: dditem user group could not be set to ‘none’ while saving a calendar.
+Fixed: sorting by calendarID when having more than 10 calendars.
+Fixed: when in custom list view and after sorting the items by calendarID with the sorting button, the items where not sorted by time.
+Tweak: Users section, the users are sorted by last name, first name or id (USERS_SORTING) now.
+Tweak: clicking on a ‘goto date’ button in search results uses the event_id now instead of the title. So now it also works when several items with the same title are on 1 day.
+Tweak: in week view and day view now the extra info like, location is also shown for allay events.
+Tweak: for standard events it is now also possible to set text color.
+Tweak: you can set validation type for phone number now in config.php.
+Fixed: when setting a language (that was already in the language dropdown) in the ‘custom language’  field, the language was not used.
+Fixed: when disconnecting a recurring event and at the same time assign it to another calendar, the new calendar_id was not saved.
+Fixed issue with unselecting an item form the second custom dropdownlist filter.
+Fixed issue that custom dropdown could not be saved when ‘show all’  is selected.
+new config-options: SHOW_CALENDAR_NAME_IN_LISTVIEW, COMBINE_MOREDAYS_EVENTS, SHOW_ICON_FOR_MOREDAYS_EVENTS_IN_CUSTOM_LISTVIEW,
+TRUNCATE_TITLE_IN_CUSTOM_LISTVIEW, USERS_SORTING, ADMINS_GET_NOTIFICATION_POPUPS, USERS_GET_NOTIFICATION_POPUPS,
+CHECK_FOR_NOTIFICATIONS_EVERY, ACTION_ON_CLICK_EVENT_IN_CUSTOM_LISTVIEW, EVENT_TEXT_COLOR, VALIDATE_PHONENUMBER_AS_STRING
+
+changed files: 
+external/fullcalendar-1.6.4/fullcalendar/fullcalendar.js, 
+external/fullcalendar-1.6.4/fullcalendar/agendalist.css,
+model/calendar_options.class.php, model/calendar.class.php, model/events.class.php, model/schedule.class.php, model/settings.class.php, users.class.php
+lib/utils.class.php,
+command/cal_events.php,
+include/default.inc.php,
+user/calendars/index.php,
+style/style.css,
+admin/availability/index.php,
+admin/calendars/index.php,
+view/cal.html, view/admin_panel.tpl,
+view/dialogs/dlg_event_edit.html, view/dialog/dlg_event_edit_custom_view,
+view/widgets/agenda.html,
+view/search_results.html, view/user_panel.tpl,
+view/leftblocks/calendars_custom_listview.html, view/leftblocks/calendars.html, view/leftblocks/custom_dropdowns_custom_listview.html
+configs/config.php (don't copy the whole file, only added config-options !!!)
+calendar_db_update21.sql, 
+index.php, login.html, current_version.txt
+all files in script folder
+3 new icons in images folder
+
+update 39 (2-10-2016)
+update22.sql
+Tweak: In the notification email the date format now also is in AM-PM format.
+Fix: when ALLDAY IS DEFAULT is set, it doesn’t have to be allday when inserting an item in a time slot in the week view or day view.
+Tweak: added ‘users can see next x days’ to global settings. Usable for custom list view.
+Tweak: pdf and print button can be set hidden.
+Added possibility to restrict users to only edit the title.
+Added configurable restrictions for users concerning the custom list view.
+Added search possibility to custom list view.
+Tweak: email validation now uses PHP’s filter_var function.
+Tweak: when editing a recurring event now also the date of the specific event is shown in the dialog.
+Fixed issue with not showing error message while saving profile.
+Tweak: now also pattern startdate and enddate are visible in mouseover.
+Fix: validating phone number as string was not working correctly.
+Fixed issue: it seemed that saving a user profile wa snot working, it was actually but the error was not showed.
+Fixed bug that user group DD-items were not being showed.
+new config-options:
+HIDE_PERIOD_REFRESH_BUTTON_FOR_USERS_IN_CUSTOM_LISTVIEW, HIDE_SEARCHFIELD_FOR_USERS_IN_CUSTOM_LISTVIEW, CUSTOM_LISTVIEW_IS_DEFAULT_VIEW_FOR_USERS_AND_NOT_LOGGEDIN_VIEWERS,
+HIDE_MINUTES_IN_MONTH_WEEK_DAY_VIEW, HIDE_PDF_BUTTON, HIDE_PRINT_BUTTON, USERS_CAN_ONLY_CHANGE_TITLE
+
+changed files: 
+view/dialogs/dlg_event_edit.html, view/leftblocks/calendars_custom_listview.html, view/leftblocks/custom_dropdowns_custom_listview.html, view/search_results.html, view/widgets/agenda.html, view/admin_panel.tpl, view/cal.html,
+all files in script folder,
+admin/users/index.php, 
+model/calendar.class.php, model/events.class.php, model/groups.class.php, model/users.class.php, 
+all files in include folder, 
+command/cal_events.php,
+lib/utils.class.php,
+index.php and change.log
+
+update 40 (27-11-2016)
+update23.sql
+Fixed: because of some notices a user couldn’t add a calendar.
+Added possibility to set more than 1 team member for an event.
+Added possibility to set a text color for each calendar.
+Added possibility to show a logo instead of calendar name or next to the calendar name.
+Added three optional custom dropdowns.
+Added: optional phone number to user edit dialog.
+Fixed: when adding a new item, the unassign checkbox was visible, it should be the assign checkbox.
+In uploads folder you can now also put calendar_logo.png (max. height 38 px) and login_logo.png. pdf_logo.png was already longer available.
+Fixed: ‘assign’ checkbox was visible in the event edit dialog, even when show_team_memberfield was off.
+Fixed bug with saving a profile when birthdate was empty.
+Fixed: title was not shown in weekview when the event duration was half an hour or less.
+Fixed: an item was not assigned when an item was newly added with a team-member selected and assign checkbox checked.
+Fixed: when en item was 0 minutes it was counted as a day in the hour calculation.
+Fixed: in month view the ‘allday is default’ setting was not used properly.
+Fixed issue with live notifications, you should only see others updated items.
+Tweak: Nicer way to select users when editing a group.
+Tweak: date format for last added events in dashboard was incorrect and added name of user who added the event.
+Fixed: dropdown menu in custom list view was not translated correctly.
+Fixed an encoding issue with PDF export.
+Tweak: now also automatic line break in title column is possible.
+new config options: 
+SLOT_MINUTES, SNAP_MINUTES, SLOT_EVENT_OVERLAP
+SHOW_PHONEFIELD_IN_REGISTERFORM, SHOW_CALENDAR_NAME_IN_CUSTOM_LISTVIEW
+
+changed/added files: 
+command/cal_events.php, 
+all files in include folder,
+view/widgets/agenda.html, view/user_panel.tpl, view/search_results.html, view/cal.html, view/admin_panel.tpl, all files in view/leftblocks, view/dialogs/dlg_event_edit.html,
+model/calendar.class.php, model/custom_fields.class.php, model/events.class.php, model/groups.class.php, model/lists.class.php, model/settings.class.php, model/users.class.php, 
+lib/utils.class.php, 
+register/index.php, register/index.tpl, 
+all files in script folder, 
+style/customstyles.css, style/style.css, 
+admin/calendars/index.php, admin/groups/index.php, admin/index.php, admin/lists/index.php, admin/settings/index.php, admin/users/index.php, 
+user/calendars/index.php, user/calendars/public/index.php, 
+external/jquery/jquery-ui.1.12.1.min.js, external/jquery/jquery.1.12.4.min.js, 
+external/jquery/jqueryui/1.12.1, external/jquery/pq-multiselect/pqselect.dev.css, external/jquery/pq-multiselect/pqselect.dev.js, 
+
+Update 41 (13-12-2016)
+When determining how many employees are available we have to check on groupID also.
+‘Users can see next days’ (and past days) in custom list view couldn’t be set to empty and be saved.
+Also added phone number as optional field to the user profile.
+Fixed encoding issue in pdf export.
+Fixed: in notification mail the endtime was not correct 8:00  instead of 20:00. That is when SHOW_AM_PM is false.
+Fixed: 12 hour format (am/pm) in DD-item starttime or endtime (calendar edit dialog in the dashboard) was not correctly formatted.
+Tweak: included calendar name in the mails.
+Tweak: now it is also set the options for a calendar that users only see their own assigned items.
+Added possibility to export to CSV.
+Fixed: after upgrading to newer jQuery, 2 date pickers were set properly anymore.
+Fixed: syntax error in langES.js and langPL.js
+Updated documentation
+
+changed/added files: 
+model/lists.class.php, model/events.class.php, model/users.class.php, model/calendar.class.php
+script/script.js, all language files
+view/admin_panel.tpl
+admin/users/index.php, admin/calendars/index.php
+index.php
+employee-work-schedule.pdf
+
+Update 42 (20-12-2016)
+fixed: when dragging and dropping an event to another day/time the team member was removed from the event.
+fixed: when user profile the changed values seemed not to be saved, however they were saved correctly but the refresh didn’t work as it should.
+fixed: issue with showing custom list every time when user logs in, even when the config-option is false.
+fixed: when showing the delete button in the events, the mouseover doesn’t disappear with mouse out event.
+fixed bug in agenda list view, week start and end date were posted incorrectly.
+fixed slipped in bug with adding recurring events.
+fixed: 2 missing array values in search function.
+fixed: user could still edit an event that was not in the alterable range.
+tweak: better date format in agenda list view.
+tweak: fixed position for calendar buttons left block.
+added search possibility to users section in the dashboard.
+added possibility to add extra date parts in the day blocks in the month view. new config-option: DAYDATE_IN_MONTHVIEW_FORMAT (default is ‘d’).
+Other new config-options: CAL_BLOCK_FIXED_POSITION, HIDE_CSV_BUTTON, HIDE_ICS_BUTTON
+
+changed/added files:
+model/users.class/php, model/calendar.class.php, model/events.class.php
+admin/users/index.php
+view/admin_panel.tpl, view/user_panel.tpl, view/widgets/agenda.html, view/cal.html
+view/dialogs/dlg_event_edit.html
+script/script.js, all language files
+command/cal_events.php
+index.php
+configs/config.php
+include/default.inc.php
+external/fullcalendar-1.6.4/fullcalendar/fullcalendar.js
+user/index.php
+lib/utils.class.php
+style/style.css
+new icons in images folder
+
+update 43 (26-1-2017)
+Added possibility to export whole view or 1 event to iCalendar (ics)
+Added translations, also to select box options.
+Added option to calendar edit form (in the calendars section) to use the calendar name as title when an event is added.
+fixed issue, after upgrading jQuery to newer version, with recurring event set to monthly 
+fixed issue with showing incorrect day name in mouseover when recurring pattern was monthly, day of week and first day of week in the calendar was set to monday.
+fixed issue with monthly recurring event (dayofweek) that mouseover day was incorrect.
+fixed: the setting ‘send_activation_mail’ is incorrectly after submitting the ‘forgot password’ form.
+Fixed: setLocale Dutch was not working correctly.
+fixed: ‘show user filter’  wasn’t saved when checked off
+tweak: the dropdowns on calendar view now are bootstrap 3. 
+tweak: the labels of the custom dropdowns are now also visible in the mouseover popup.
+tweak: 3 export buttons combined in a dropdown menu.
+tweak: login screen with bootstrap (optionally with config-option: BOOTSTRAP_LOGIN)
+tweak: hide the search, export and print button on phone 
+other new config-options: REFRESH_ICON_WHITE, ASSIGNED_ICON_WHITE, SHOW_LOGO_IN_LOGIN_FORM
+
+changed files:
+command/cal_events.php
+configs/config.php
+include/default.inc.php
+external/bootstrap folder
+user/calendars/index.php
+admin/users/index.php, admin/settings/index.php, admin/calendars/index.php
+whole script folder, except listeners_custom_listview.js
+view/cal.html, view/admin_panel.html, view/user_panel.tpl
+model/events.class.php, model/settings.class.php, model/calendar.class.php, model/users.class.php, model/custom_fields.class.php
+style/styles.css, style/custom_styles.css
+lib/utils.class.php
+index.php, login.html
