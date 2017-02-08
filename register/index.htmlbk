@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html lang="en">
+<head>
+    <title>MyLogbook - Get the app and register</title>
+    <meta name="keywords" content="mylogbook, fullcalendar, edit events, calendar, android app" />
+	  <meta name="description" content="With mylogbook you can easily insert events into your inline calendar." />
+    <link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/view.css" media="all">
+<script type="text/javascript" src="js/view.js"></script>
+<script type="text/javascript" src="js/calendar.js"></script>
+
+</head>
+<body>
+    <div class="content">
+	    <div class="wrap">
+	        <!-- <a href="" id="" title="Paulthedutchman.nl"></a> -->
+			   <div class="block" style="background-color:#FFFFE0;margin-left:150px;width:920px !important;margin-bottom:20px;font-size:20px;">
+            <a href= "<?smarty $smarty.const.MYLOGBOOK_URL ?>">HOME</a> | MyLogbook - Get the app and register
+         </div>
+
+
+
+				    <br style= "clear:left;" />
+
+
+				  <div class="block" style= "width:auto;margin-left:150px;height:650px;width:920px !important;" >
+
+              <br /><br />
+              <p>Register for an acount to use the online calendar. After activating you can login and download the mobile app.<br/>
+              The app is not necessary, you can also just use the online calendar, however the app does add great functionality because you can easily add items to your calendar with your mobile device.<br /></p>
+
+             <h1>Register</h1>
+		<form id="form_837345"  method="post" action="?action=register">
+			<div class="form_description">
+				<h2>Register</h2>
+
+				 <?smarty if isset($msg) && !empty($msg) ?>
+					<span style="color:red;position:relative;"><?smarty $msg ?></span>
+				<?smarty /if ?>
+
+			</div>
+			<ul >
+			<li id="li_4" >
+				<label class="description" for="element_4">Name </label>
+				<span>
+					<input id="element_4_1" name= "firstname" class="element text" maxlength="255" size="25" value="<?smarty $form.firstname|default:"" ?>"/>
+					<label>Firstname</label>
+				</span>
+				<span>
+					<input id="element_4_2" name= "infix" class="element text" maxlength="255" size="8" value="<?smarty $form.infix|default:"" ?>"/>
+					<label>Infix [optional]</label>
+				</span>
+				<span>
+					<input id="element_4_3" name= "lastname" class="element text" maxlength="255" size="25" value="<?smarty $form.lastname|default:"" ?>"/>
+					<label>Lastname</label>
+				</span>
+			</li>
+			<li id="li_2" >
+				<label class="description" for="element_2">Birthdate </label>
+				<span>
+					<input id="element_2_1" name="month" class="element text" size="2" maxlength="2" value="<?smarty $form.month|default:"" ?>" type="text"> /
+					<label for="element_2_1">MM</label>
+				</span>
+				<span>
+					<input id="element_2_2" name="day" class="element text" size="2" maxlength="2" value="<?smarty $form.day|default:"" ?>" type="text"> /
+					<label for="element_2_2">DD</label>
+				</span>
+				<span>
+			 		<input id="element_2_3" name="year" class="element text" size="4" maxlength="4" value="<?smarty $form.year|default:"" ?>" type="text">
+					<label for="element_2_3">YYYY</label>
+				</span>
+
+				<span id="calendar_2">
+					<img id="cal_img_2" class="datepicker" src="calendar.gif" alt="Pick a date.">
+				</span>
+				<script type="text/javascript">
+					Calendar.setup({
+					inputField	 : "element_2_3",
+					baseField    : "element_2",
+					displayArea  : "calendar_2",
+					button		 : "cal_img_2",
+					ifFormat	 : "%B %e, %Y",
+					onSelect	 : selectDate
+					});
+				</script>
+
+				</li>
+				<li id="li_1" >
+					<label class="description" for="element_1">Username</label>
+					<div>
+						<input id="element_1" name="username" class="element text medium" type="text" maxlength="255" value="<?smarty $form.username|default:"" ?>"/>
+					</div>
+					</li>		<li id="li_3" >
+					<label class="description" for="element_3">Email </label>
+					<div>
+						<input id="element_3" name="email" class="element text medium" type="text" maxlength="255" value="<?smarty $form.email|default:"" ?>"/>
+					</div>
+					</li>
+					<li>
+					<img src="<?smarty $smarty.const.PTD_URL ?>/command/picgen.php?image=captcha&font=segoeprb&size=15&color=347235&rgb_bg=255,255,255&sid=<?php echo rand(10000,99999); ?>">
+					</li>
+					<li>
+					Type the code &nbsp;&nbsp;<input type="text" name="captchacode" value="<?smarty $form.captchacode ?>">
+
+					</li>
+					<br />
+					<li>
+						<input type="checkbox" />I have read and agree to the <a href="<?smarty $smarty.const.MYLOGBOOK_URL ?>/terms-of-use" target="_blank">terms of use</a>
+					</li>
+					<li class="buttons">
+						    <input type="hidden" name="form_id" value="837345" />
+
+							<input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
+					</li>
+
+			</ul>
+		</form>
+	    </div>
+
+
+
+			</div>
+
+<br style="clear:left;" />
+<br />
+
+
+
+	</div>
+</div><br /><br />
+
+</body>
+</html>
